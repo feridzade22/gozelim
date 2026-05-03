@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>777 - Ad Günün Mübarək</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="locked">
+    <canvas id="confetti" aria-hidden="true"></canvas>
+
+    <section class="launch-gate" id="launchGate" aria-label="Sayt acilis saygaci">
+      <img
+        class="launch-bg"
+        src="assets/hero-777-birthday.png"
+        alt="Qızılı 777 rəqəmi, ad günü işıqları və balonlar"
+      />
+      <div class="launch-overlay"></div>
+      <div class="launch-content">
+        <p class="eyebrow">20 may 2026, 00:00</p>
+        <h1>Hədiyyə hələ açılmayıb</h1>
+        <p class="launch-copy">
+          19-dan 20-sinə keçən gecə bu sayt tam açılacaq.
+        </p>
+        <div class="countdown" aria-live="polite">
+          <div class="count-box">
+            <strong id="countDays">00</strong>
+            <span>gün</span>
+          </div>
+          <div class="count-box">
+            <strong id="countHours">00</strong>
+            <span>saat</span>
+          </div>
+          <div class="count-box">
+            <strong id="countMinutes">00</strong>
+            <span>dəqiqə</span>
+          </div>
+          <div class="count-box">
+            <strong id="countSeconds">00</strong>
+            <span>saniyə</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <header class="site-header" aria-label="Sayt basligi">
+      <a class="brand" href="#home" aria-label="777 ad gunu sayti">777</a>
+      <nav class="nav" aria-label="Bolmeler">
+        <a href="#wishes">Diləklər</a>
+        <a href="#reasons">Səbəblər</a>
+        <a href="#letter">Məktub</a>
+        <a href="#surprise">Sürpriz</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home" aria-label="Ad gunu tebriki">
+        <img
+          class="hero-media"
+          src="assets/hero-777-birthday.png"
+          alt="Qızılı 777 rəqəmi, romantik ad günü işıqları, güllər və balonlar"
+        />
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Bu gün bütün şans rəqəmləri sənin üçündür</p>
+          <h1>
+            Ad günün mübarək,
+            <span data-person-name>gözəl qız</span>
+          </h1>
+          <p class="hero-copy">
+            777 sənin sevdiyin rəqəmdir, amma bu gün ən gözəl təsadüf sənsən.
+            Bu kiçik sayt da gülümsəməyin üçün hazırlanıb.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#surprise">Sürprizi aç</a>
+            <a class="button ghost" href="#wishes">777 diləyə bax</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="number-band" aria-label="777 motivi">
+        <div class="number-track">
+          <span>777</span>
+          <span>uğur</span>
+          <span>sevinc</span>
+          <span>gülüş</span>
+          <span>777</span>
+          <span>arzu</span>
+          <span>işıq</span>
+          <span>777</span>
+          <span>uğur</span>
+          <span>sevinc</span>
+          <span>gülüş</span>
+          <span>777</span>
+          <span>arzu</span>
+          <span>işıq</span>
+        </div>
+      </section>
+
+      <section class="section wishes" id="wishes">
+        <div class="section-heading">
+          <p class="eyebrow dark">7 + 7 + 7</p>
+          <h2>Sənin üçün seçilən diləklər</h2>
+        </div>
+
+        <div class="wish-grid">
+          <article class="wish-card">
+            <span>01</span>
+            <h3>Gülüşün çoxalsın</h3>
+            <p>Hər yeni yaşında gülmək üçün səbəblərin daha çox olsun.</p>
+          </article>
+          <article class="wish-card">
+            <span>02</span>
+            <h3>Şansın yanında olsun</h3>
+            <p>777 kimi sevdiyin bütün işarələr sənə gözəl xəbərlər gətirsin.</p>
+          </article>
+          <article class="wish-card">
+            <span>03</span>
+            <h3>Ürəyin rahat qalsın</h3>
+            <p>Səni yoran hər şey uzaqda, səni sevindirən hər şey yaxında olsun.</p>
+          </article>
+          <article class="wish-card">
+            <span>04</span>
+            <h3>Gözlərin parlasın</h3>
+            <p>Bu gün aldığın hər təbrik içindəki işığı bir az da artırsın.</p>
+          </article>
+          <article class="wish-card">
+            <span>05</span>
+            <h3>Arzuların gerçək olsun</h3>
+            <p>Kiçik arzular da, böyük xəyallar da yolunu tapsın.</p>
+          </article>
+          <article class="wish-card">
+            <span>06</span>
+            <h3>Dəyərin bilinsin</h3>
+            <p>Həyatında səni həqiqətən görən, eşidən və qoruyan insanlar olsun.</p>
+          </article>
+          <article class="wish-card">
+            <span>07</span>
+            <h3>Bu yaşın fərqli olsun</h3>
+            <p>Yeni yaşın sənə gözləmədiyin qədər gözəl başlanğıclar gətirsin.</p>
+          </article>
+          <article class="wish-card featured">
+            <span>08</span>
+            <h3>İnşallah münasibətimiz irəliləyər</h3>
+            <p>Sən də məni sevməyə başlayarsan, gözəlim.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reasons" id="reasons">
+        <div class="section-heading">
+          <p class="eyebrow dark">7 səbəb</p>
+          <h2>Səni tanımaq niyə gözəldir</h2>
+        </div>
+
+        <div class="reason-list">
+          <article class="reason-card">
+            <span>01</span>
+            <p>Qoyduğun hörmət.</p>
+          </article>
+          <article class="reason-card">
+            <span>02</span>
+            <p>Göstərdiyin qayğı.</p>
+          </article>
+          <article class="reason-card">
+            <span>03</span>
+            <p>Səmimiyyətin və xasiyyətinin mənimlə çox uyğun olması.</p>
+          </article>
+          <article class="reason-card">
+            <span>04</span>
+            <p>Gözlərinin çox gözəl olması.</p>
+          </article>
+          <article class="reason-card">
+            <span>05</span>
+            <p>Mənə qarşı olan davranışların.</p>
+          </article>
+          <article class="reason-card">
+            <span>06</span>
+            <p>Sadəliyin.</p>
+          </article>
+          <article class="reason-card final-reason">
+            <span>07</span>
+            <p>
+              Olğun davranışlı biri olmağın və olğunluğunla birlikdə nazlı
+              olmağın, nazlı gözəlim mənim.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section star-game" id="stars">
+        <div class="star-layout">
+          <div class="star-copy">
+            <p class="eyebrow dark">7 ulduz</p>
+            <h2>Hər ulduzda bir mesaj</h2>
+          </div>
+
+          <div class="star-panel">
+            <div class="star-orbit" aria-label="7 ulduz mesajı">
+              <button class="star-button" type="button" data-star="0" aria-label="Birinci ulduz">★</button>
+              <button class="star-button" type="button" data-star="1" aria-label="İkinci ulduz">★</button>
+              <button class="star-button" type="button" data-star="2" aria-label="Üçüncü ulduz">★</button>
+              <button class="star-button" type="button" data-star="3" aria-label="Dördüncü ulduz">★</button>
+              <button class="star-button" type="button" data-star="4" aria-label="Beşinci ulduz">★</button>
+              <button class="star-button" type="button" data-star="5" aria-label="Altıncı ulduz">★</button>
+              <button class="star-button" type="button" data-star="6" aria-label="Yeddinci ulduz">★</button>
+            </div>
+            <p class="star-message" id="starMessage">
+              Sənin haqqında ən sevdiyim şeylər burada parıldayır.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section letter" id="letter">
+        <div class="letter-panel">
+          <p class="eyebrow dark">Kiçik məktub</p>
+          <h2>Bu günün mesajı</h2>
+          <p id="typedMessage" class="typed-message"></p>
+        </div>
+      </section>
+
+      <section class="section surprise" id="surprise">
+        <div class="surprise-layout">
+          <div class="surprise-copy">
+            <p class="eyebrow dark">777 sürprizi</p>
+            <h2>Bir klik, bir şanslı cümlə</h2>
+            <p>
+              Sən düyməyə basanda 777 dayanır və sənin üçün kiçik bir mesaj
+              seçilir.
+            </p>
+          </div>
+
+          <div class="slot-machine" aria-live="polite">
+            <div class="digits" id="digits">
+              <span>7</span>
+              <span>7</span>
+              <span>7</span>
+            </div>
+            <p id="luckyMessage">Bu gün şans sənin tərəfinə baxır.</p>
+            <button class="button primary" id="spinButton" type="button">
+              Şansı çevir
+            </button>
+            <button class="button lens-open" id="openPendantButton" type="button">
+              Boyunbağı sirrini aç
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section pendant-reveal" id="pendantReveal" hidden>
+        <div class="pendant-layout">
+          <div class="pendant-copy">
+            <p class="eyebrow dark">Gizli lens</p>
+            <h2>İçində qalan söz</h2>
+            <p>
+              Eyni məna 100 dildə yazılır: yaxşı ki varsan.
+            </p>
+          </div>
+
+          <div class="pendant-stage" aria-label="Boyunbağı proyeksiya effekti">
+            <div class="chain" aria-hidden="true"></div>
+            <div class="pendant" aria-hidden="true">
+              <div class="moon"></div>
+              <div class="stone"></div>
+            </div>
+            <div
+              class="projection-disc"
+              id="projectionDisc"
+              aria-label="Yaxşı ki varsan sözləri"
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section finale" id="finale">
+        <div class="finale-inner">
+          <p class="eyebrow">Final</p>
+          <h2>777 dəfə yaxşı ki varsan</h2>
+          <p>
+            Bu səhifənin sonu olsa da, sənə demək istədiyim gözəl sözlərin sonu
+            yoxdur.
+          </p>
+          <a class="button primary" href="#home">Yenidən başa qayıt</a>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      777 dəfə ad günün mübarək!
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
