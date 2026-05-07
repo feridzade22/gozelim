@@ -1,4 +1,4 @@
-const PERSON_NAME = "gözəl qız";
+const PERSON_NAME = "Qənirəm";
 
 const letter =
   "Ad günün mübarək, gözəlim, göyçəyim. Yaxşı ki tanımışam səni. Düzdür, yanında deyiləm, uzaqdayam deyə əlimdən bu qədəri gəldi. Ümidvaram bəyənərsən. Həyatıma girdiyin üçün təşəkkürlər. İmza: FƏRİD.";
@@ -30,6 +30,19 @@ nameTargets.forEach((target) => {
   target.textContent = PERSON_NAME;
 });
 
+const animatedName = document.querySelector("#animatedName");
+if (animatedName) {
+  const name = animatedName.textContent.trim();
+  animatedName.textContent = "";
+
+  Array.from(name).forEach((letter, index) => {
+    const span = document.createElement("span");
+    span.textContent = letter;
+    span.style.setProperty("--i", index);
+    animatedName.appendChild(span);
+  });
+}
+
 const typedMessage = document.querySelector("#typedMessage");
 let typeIndex = 0;
 
@@ -56,19 +69,23 @@ const letterSection = document.querySelector("#letter");
 if (letterSection) observer.observe(letterSection);
 
 const canvas = document.querySelector("#confetti");
-const ctx = canvas.getContext("2d");
+const ctx = canvas ? canvas.getContext("2d") : null;
 const particles = [];
 const colors = ["#f2be62", "#fff1d2", "#b86b76", "#0d3d42", "#ffffff"];
 let animationFrame = null;
 let initialBurstDone = false;
 
 function resizeCanvas() {
+  if (!canvas || !ctx) return;
+
   canvas.width = window.innerWidth * window.devicePixelRatio;
   canvas.height = window.innerHeight * window.devicePixelRatio;
   ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
 }
 
 function createConfetti(amount = 120) {
+  if (!canvas || !ctx) return;
+
   for (let i = 0; i < amount; i += 1) {
     particles.push({
       x: Math.random() * window.innerWidth,
@@ -85,6 +102,8 @@ function createConfetti(amount = 120) {
 }
 
 function drawHeart(x, y, size) {
+  if (!ctx) return;
+
   const scale = size / 18;
   ctx.beginPath();
   ctx.moveTo(x, y + 5 * scale);
@@ -94,6 +113,8 @@ function drawHeart(x, y, size) {
 }
 
 function animateConfetti() {
+  if (!ctx) return;
+
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
   for (let i = particles.length - 1; i >= 0; i -= 1) {
@@ -128,6 +149,8 @@ function animateConfetti() {
 }
 
 function burst(amount) {
+  if (!canvas || !ctx) return;
+
   createConfetti(amount);
   if (!animationFrame) {
     animationFrame = requestAnimationFrame(animateConfetti);
@@ -151,6 +174,7 @@ window.addEventListener("load", () => {
   if (!isLaunchLocked()) {
     runInitialBurst(90);
   }
+  runInitialBurst(90);
 });
 
 const launchGate = document.querySelector("#launchGate");
@@ -169,6 +193,8 @@ const pendantReveal = document.querySelector("#pendantReveal");
 const projectionDisc = document.querySelector("#projectionDisc");
 const starButtons = document.querySelectorAll(".star-button");
 const starMessage = document.querySelector("#starMessage");
+const scratchCanvas = document.querySelector("#scratchCanvas");
+const resetScratchButton = document.querySelector("#resetScratchButton");
 const lensPhrases = [
   "Yaxşı ki varsan",
   "İyi ki varsın",
@@ -273,6 +299,9 @@ const lensPhrases = [
 ];
 let projectionWidth = 0;
 let isSlotSpinning = false;
+let scratchCtx = null;
+let isScratching = false;
+let scratchRevealed = false;
 let launchTimer = null;
 
 function showToast(message = defaultToastMessage) {
@@ -281,6 +310,105 @@ function showToast(message = defaultToastMessage) {
   toast.textContent = message;
   toast.classList.add("show");
   window.setTimeout(() => toast.classList.remove("show"), 2200);
+}
+
+function setupScratchCanvas() {
+  if (!scratchCanvas) return;
+
+  const rect = scratchCanvas.getBoundingClientRect();
+  if (rect.width === 0 || rect.height === 0) return;
+
+  const dpr = window.devicePixelRatio || 1;
+  scratchCanvas.width = Math.round(rect.width * dpr);
+  scratchCanvas.height = Math.round(rect.height * dpr);
+  scratchCtx = scratchCanvas.getContext("2d");
+  scratchCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const width = rect.width;
+  const height = rect.height;
+  const cover = scratchCtx.createLinearGradient(0, 0, width, height);
+  cover.addColorStop(0, "#0d3d42");
+  cover.addColorStop(0.5, "#762f43");
+  cover.addColorStop(1, "#f2be62");
+
+  scratchCtx.globalCompositeOperation = "source-over";
+  scratchCtx.clearRect(0, 0, width, height);
+  scratchCtx.fillStyle = cover;
+  scratchCtx.fillRect(0, 0, width, height);
+
+  scratchCtx.fillStyle = "rgba(255, 241, 210, 0.18)";
+  for (let i = 0; i < 38; i += 1) {
+    const x = Math.random() * width;
+    const y = Math.random() * height;
+    const size = 1.5 + Math.random() * 3.5;
+    scratchCtx.beginPath();
+    scratchCtx.arc(x, y, size, 0, Math.PI * 2);
+    scratchCtx.fill();
+  }
+
+  scratchCtx.fillStyle = "rgba(255, 241, 210, 0.72)";
+  scratchCtx.font = "800 72px Playfair Display, Georgia, serif";
+  scratchCtx.textAlign = "center";
+  scratchCtx.textBaseline = "middle";
+  scratchCtx.fillText("777", width / 2, height / 2);
+
+  scratchCtx.strokeStyle = "rgba(255, 241, 210, 0.28)";
+  scratchCtx.lineWidth = 2;
+  scratchCtx.strokeRect(16, 16, width - 32, height - 32);
+
+  scratchRevealed = false;
+  scratchCanvas.classList.remove("is-revealed");
+}
+
+function getScratchPoint(event) {
+  const rect = scratchCanvas.getBoundingClientRect();
+  return {
+    x: event.clientX - rect.left,
+    y: event.clientY - rect.top,
+  };
+}
+
+function revealScratchSecret() {
+  if (scratchRevealed || !scratchCanvas) return;
+
+  scratchRevealed = true;
+  scratchCanvas.classList.add("is-revealed");
+  burst(130);
+  showToast("Gizli söz açıldı!");
+}
+
+function checkScratchProgress() {
+  if (!scratchCtx || !scratchCanvas || scratchRevealed) return;
+
+  const pixels = scratchCtx.getImageData(0, 0, scratchCanvas.width, scratchCanvas.height).data;
+  let cleared = 0;
+  let total = 0;
+
+  for (let i = 3; i < pixels.length; i += 72) {
+    total += 1;
+    if (pixels[i] < 36) {
+      cleared += 1;
+    }
+  }
+
+  if (total > 0 && cleared / total > 0.46) {
+    revealScratchSecret();
+  }
+}
+
+function scratchAt(event) {
+  if (!scratchCtx || !scratchCanvas || scratchRevealed) return;
+
+  const point = getScratchPoint(event);
+  scratchCtx.save();
+  scratchCtx.globalCompositeOperation = "destination-out";
+  scratchCtx.beginPath();
+  scratchCtx.arc(point.x, point.y, 26, 0, Math.PI * 2);
+  scratchCtx.fill();
+  scratchCtx.restore();
+
+  checkScratchProgress();
+  event.preventDefault();
 }
 
 function setCountValue(element, value) {
@@ -342,6 +470,39 @@ function initLaunchGate() {
 }
 
 initLaunchGate();
+
+setupScratchCanvas();
+window.addEventListener("load", setupScratchCanvas);
+window.addEventListener("resize", () => {
+  if (!scratchRevealed) {
+    setupScratchCanvas();
+  }
+});
+
+scratchCanvas?.addEventListener("pointerdown", (event) => {
+  if (scratchRevealed) return;
+
+  isScratching = true;
+  scratchCanvas.setPointerCapture?.(event.pointerId);
+  scratchAt(event);
+});
+
+scratchCanvas?.addEventListener("pointermove", (event) => {
+  if (isScratching) {
+    scratchAt(event);
+  }
+});
+
+["pointerup", "pointercancel", "pointerleave"].forEach((eventName) => {
+  scratchCanvas?.addEventListener(eventName, () => {
+    isScratching = false;
+  });
+});
+
+resetScratchButton?.addEventListener("click", () => {
+  setupScratchCanvas();
+  showToast("Gizli söz yenidən bağlandı.");
+});
 
 spinButton?.addEventListener("click", () => {
   if (isSlotSpinning || !digits || slotDigits.length === 0) return;
