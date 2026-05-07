@@ -12,7 +12,7 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="locked">
+  <body>
     <canvas id="confetti" aria-hidden="true"></canvas>
 
     <section class="launch-gate" id="launchGate" aria-label="Sayt acilis saygaci">
@@ -52,9 +52,12 @@
     <header class="site-header" aria-label="Sayt basligi">
       <a class="brand" href="#home" aria-label="777 ad gunu sayti">777</a>
       <nav class="nav" aria-label="Bolmeler">
+        <a href="#timeline">Xatirələr</a>
+        <a href="#nameReveal">Qənirəm</a>
         <a href="#wishes">Diləklər</a>
         <a href="#reasons">Səbəblər</a>
         <a href="#letter">Məktub</a>
+        <a href="#scratch">Sirr</a>
         <a href="#surprise">Sürpriz</a>
       </nav>
     </header>
@@ -71,7 +74,7 @@
           <p class="eyebrow">Bu gün bütün şans rəqəmləri sənin üçündür</p>
           <h1>
             Ad günün mübarək,
-            <span data-person-name>gözəl qız</span>
+            <span class="name-glow" data-person-name>Qənirəm</span>
           </h1>
           <p class="hero-copy">
             777 sənin sevdiyin rəqəmdir, amma bu gün ən gözəl təsadüf sənsən.
@@ -100,6 +103,41 @@
           <span>777</span>
           <span>arzu</span>
           <span>işıq</span>
+        </div>
+      </section>
+
+      <section class="section timeline" id="timeline">
+        <div class="section-heading">
+          <p class="eyebrow dark">Bizim xatirələr</p>
+          <h2>Başladığı anlar</h2>
+        </div>
+
+        <div class="timeline-list">
+          <article class="timeline-card">
+            <time datetime="2026-03-31T20:20:00+04:00">31 mart 2026 · 20:20</time>
+            <h3>İlk tanışlığımız</h3>
+            <p>
+              Hər şey həmin axşam başladı. Sadə bir tanışlıq kimi görünsə də,
+              yadda qalan ən gözəl başlanğıclardan biri oldu.
+            </p>
+          </article>
+
+          <article class="timeline-card featured">
+            <time datetime="2026-04-29T23:19:00+04:00">29 aprel 2026 · 23:19</time>
+            <h3>İlk ciddi münasibət tanışlığımız</h3>
+            <p>
+              Bu dəfə söhbət daha ciddi, daha səmimi və daha mənalı oldu. O an
+              bu hekayənin ayrıca bir yeri kimi qaldı.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section name-reveal" id="nameReveal">
+        <div class="name-reveal-inner">
+          <p class="eyebrow">Adının işığı</p>
+          <h2 class="animated-name" id="animatedName" aria-label="Qənirəm">Qənirəm</h2>
+          <p>Bu səhifədə ən gözəl parlayan şey sənin adındır.</p>
         </div>
       </section>
 
@@ -223,6 +261,30 @@
           <p class="eyebrow dark">Kiçik məktub</p>
           <h2>Bu günün mesajı</h2>
           <p id="typedMessage" class="typed-message"></p>
+        </div>
+      </section>
+
+      <section class="section scratch-section" id="scratch">
+        <div class="scratch-layout">
+          <div class="scratch-copy">
+            <p class="eyebrow dark">Gizli söz</p>
+            <h2>Sənin üçün ayrılan cümlə</h2>
+            <p>
+              Bəzi sözlər birbaşa deyil, yavaş-yavaş açılmalıdır.
+            </p>
+          </div>
+
+          <div class="scratch-wrap">
+            <div class="scratch-card" id="scratchCard">
+              <p class="scratch-secret">
+                Qənirəm, sən mənim ən gözəl təsadüfümsən.
+              </p>
+              <canvas id="scratchCanvas" aria-label="Gizli söz kartı"></canvas>
+            </div>
+            <button class="button scratch-reset" id="resetScratchButton" type="button">
+              Yenidən bağla
+            </button>
+          </div>
         </div>
       </section>
 
